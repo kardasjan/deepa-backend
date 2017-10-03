@@ -1,0 +1,22 @@
+{
+  "_HOW_TO_RUN": "apidoc -i routes -o public/doc/",
+  "name": "Ohayoo's NodeJS Boilerplate",
+  "version": "0.0.1",
+  "description": "Default App",
+  "title": "Ohi's Boiling Ludacricity",
+  "url" : "http://localhost:3015",
+  "sampleUrl": "http://localhost:3015",
+  "header": {
+    "title": "Default App Documentation"
+  },
+  "template": {
+    "withCompare": true,
+    "withGenerator": true
+  },
+  "input": {
+    "locations": [
+      "routes"
+    ]
+  },
+  "output": "./doc"
+}
