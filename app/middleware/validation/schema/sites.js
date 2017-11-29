@@ -5,5 +5,5 @@ export const newSchema = Joi.object().keys({
 });
 
 export const getSchema = Joi.object().keys({
-  filter: Joi.object().required()
+  filter: Joi.object()
 }).unknown(true);

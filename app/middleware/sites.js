@@ -4,7 +4,8 @@ import SitesController from '../controllers/sites';
 import Site from '../model/site';
 
 async function getAll (req: Object, res: Object): Promise {
-  return await SitesController.getAll(req.headers.filter)
+  let filter = req.headers.filter ? JSON.parse(req.headers.filter) : {};
+  return await SitesController.getAll(filter)
     .then((sites: Site[]): Object => {
       return ApiService.sendSuccess(sites, res);
     })
@@ -16,7 +17,8 @@ async function getAll (req: Object, res: Object): Promise {
 }
 
 async function getSite (req: Object, res: Object): Promise {
-  return await SitesController.getOne(req.headers.filter)
+  let filter = req.headers.filter ? JSON.parse(req.headers.filter) : {};
+  return await SitesController.getOne(filter)
     .then((site: Site): Object => {
       return ApiService.sendSuccess(site, res);
     })

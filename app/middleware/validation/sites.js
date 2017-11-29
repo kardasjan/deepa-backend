@@ -12,7 +12,6 @@ async function newValidation (req: Object, res: Object, next: Function): Promise
 }
 
 async function getValidation (req: Object, res: Object, next: Function): Promise {
-  console.log(req.headers);
   const result = Joi.validate(req.headers, getSchema);
   if ( result.error !== null )
     return ApiService.badJoiValidationResponse(result.error, res);

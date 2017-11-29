@@ -9,11 +9,9 @@ import AuthController from './controller';
 
 async function authorize (req: Object, res: Object): Promise {
   return await User.findOne({username: req.body.username}).exec()
-    .then(async (user: User): Object => {
-      if (user === null)
-        return ApiService.sendFailed(401, ['Bad username!'], {}, res);
-      if (user.password !== req.body.password)
-        return ApiService.sendFailed(401, ['Bad password!'], {}, res);
+    .then(async (user: User | null): Object => {
+      if (user === null || user.password !== req.body.password)
+        return ApiService.sendFailed(401, ['Bad username or password!'], {}, res);
       else {
         return await AuthController.createToken(user)
           .then((token: string): Object => {

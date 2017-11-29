@@ -2,8 +2,7 @@
 import Site from '../model/site';
 import { SiteNotFoundError, SitesNotFoundError } from '../services/ErrorService/sites';
 
-async function getAll (filter: string): Promise {
-  filter = JSON.parse(filter);
+async function getAll (filter: Object = {}): Promise {
   return await Site.find(filter).exec()
     .then( (sites: Site[]): Site[] => {
       if (sites === null) {

@@ -19,7 +19,8 @@ const ROUTE_SITE_ID = '/site/:id';
  * @apiVersion 0.0.0
  *
  * @apiHeader (Header) {String} token Auth token
- * @apiHeader (Header) {Object} filter Parameters for Mongoose query
+ * 
+ * @apiParam (JSON) {Object} filter Parameters for Mongoose query
  *
  */
 router.get(ROUTE_FIND, isAuthorized, [getValidation, getAll]);
@@ -33,7 +34,8 @@ router.get(ROUTE_FIND, isAuthorized, [getValidation, getAll]);
  * @apiVersion 0.0.0
  *
  * @apiHeader (Header) {String} token Auth token
- * @apiHeader (Header) {Object} filter Parameters for Mongoose query
+ * 
+ * @apiParam (JSON) {Object} filter Parameters for Mongoose query
  *
  */
 router.get(ROUTE_SITE, isAuthorized, [getValidation, getSite]);
