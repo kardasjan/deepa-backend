@@ -41,8 +41,64 @@ async function newSite (req: Object, res: Object): Object {
     });
 }
 
+async function assignContacts (req: Object, res: Object): Object {
+  return await SitesController.assignContacts(req.body.values)
+    .then((site: Site): Object => {
+      return ApiService.sendSuccess(site, res);
+    })
+    .catch((err: Error): Object => {
+      console.log(err);
+      if (err.name === 'SiteNotFound')
+        return ApiService.sendFailed(404, [err.message], {}, res);
+      return ApiService.sendFailed(500, [err.message], {}, res);
+    });
+}
+
+async function unassignContact (req: Object, res: Object): Object {
+  return await SitesController.unassignContact(req.body.values)
+    .then((site: Site): Object => {
+      return ApiService.sendSuccess(site, res);
+    })
+    .catch((err: Error): Object => {
+      console.log(err);
+      if (err.name === 'SiteNotFound')
+        return ApiService.sendFailed(404, [err.message], {}, res);
+      return ApiService.sendFailed(500, [err.message], {}, res);
+    });
+}
+
+async function assignMessageTypes (req: Object, res: Object): Object {
+  return await SitesController.assignMessageTypes(req.body.values)
+    .then((site: Site): Object => {
+      return ApiService.sendSuccess(site, res);
+    })
+    .catch((err: Error): Object => {
+      console.log(err);
+      if (err.name === 'SiteNotFound')
+        return ApiService.sendFailed(404, [err.message], {}, res);
+      return ApiService.sendFailed(500, [err.message], {}, res);
+    });
+}
+
+async function unassignMessageType (req: Object, res: Object): Object {
+  return await SitesController.unassignMessageType(req.body.values)
+    .then((site: Site): Object => {
+      return ApiService.sendSuccess(site, res);
+    })
+    .catch((err: Error): Object => {
+      console.log(err);
+      if (err.name === 'SiteNotFound')
+        return ApiService.sendFailed(404, [err.message], {}, res);
+      return ApiService.sendFailed(500, [err.message], {}, res);
+    });
+}
+
 export {
   getAll,
   getSite,
-  newSite
+  newSite,
+  assignContacts,
+  unassignContact,
+  assignMessageTypes,
+  unassignMessageType
 };

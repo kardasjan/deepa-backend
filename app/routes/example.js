@@ -13,6 +13,7 @@ const ROUTE_PARAM = '/getByParam';
 * Every part of documentation has #replace# string which should be replaced
 * with lowercase name of the item. #Replace# should be replaced with capital letter.
 * CRUD definition prepared in following routes.
+* Also replace example path at the beginning of the file.
 */
 
 /**
@@ -30,6 +31,8 @@ const ROUTE_PARAM = '/getByParam';
 router.get(ROUTE_INDEX, isAuthorized, [Validation.getAllValidation, Middleware.getAll]);
 
 /**
+ * Empty filter object means getAll
+ * 
  * @api {get} /#replace#/getByParam Get #replace#
  * 
  * @apiName get#Replace#

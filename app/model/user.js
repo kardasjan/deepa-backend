@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 import connection from '../connection';
 
 const Schema = mongoose.Schema;
-export const COLLECTION = 'Users';
+export const COLLECTION = 'User';
 
 const schema = new Schema({
   username: {
@@ -18,4 +18,4 @@ const schema = new Schema({
   }
 });
 
-export default connection.model(COLLECTION, schema);
+export default connection.model(COLLECTION, schema, 'users');

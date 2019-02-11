@@ -8,7 +8,8 @@ import Model from '../model/example';
  * @param {Object} res 
  */
 async function getAll (req: Object, res: Object): Promise {
-  return await Controller.getAll(req.headers.filter)
+  let filter = req.headers.filter ? JSON.parse(req.headers.filter) : {};
+  return await Controller.getAll(filter)
     .then((items: Model[]): Object => {
       return ApiService.sendSuccess(items, res);
     })

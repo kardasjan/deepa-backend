@@ -19,4 +19,4 @@ const schema = new Schema({
   }
 });
 
-export default connection.model(COLLECTION, schema);
+export default connection.model(COLLECTION, schema, 'examples');

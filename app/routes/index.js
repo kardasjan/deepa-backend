@@ -6,7 +6,7 @@ const ROUTE_INDEX = '/';
 
 /* GET home page. */
 router.get(ROUTE_INDEX, (req: Object, res: Object) => {
-  res.render('index', {title: 'Aplikace meloucháři'});
+  res.render('index', {title: 'Example app'});
 });
 
 export default router;

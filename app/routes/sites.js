@@ -1,6 +1,6 @@
 import express from 'express';
-import { getAll, getSite, newSite } from '../middleware/sites';
-import { getValidation, newValidation } from '../middleware/validation/sites';
+import { getAll, getSite, newSite, assignContacts, unassignContact, assignMessageTypes, unassignMessageType } from '../middleware/sites';
+import { getValidation, newValidation, assignContactsValidation, unassignContactValidation, assignMessageTypesValidation, unassignMessageTypeValidation } from '../middleware/validation/sites';
 import { isAuthorized } from '../services/AuthService/middleware';
 
 const router = express.Router();
@@ -54,6 +54,66 @@ router.get(ROUTE_SITE, isAuthorized, [getValidation, getSite]);
  *
  */
 router.post(ROUTE_SITE, isAuthorized, [newValidation, newSite]);
+
+/**
+ * @api {post} /sites/site/assignContacts Assign contacts
+ * 
+ * @apiName assignContacts
+ * @apiDescription Assign contacts to a site.
+ * @apiGroup Sites/Site
+ * @apiVersion 0.0.0
+ *
+ * @apiHeader (Header) {String} token Auth token
+ *
+ * @apiParam (POST PARAM - JSON) {siteId: string, contacts: [string]} values Site values
+ *
+ */
+router.post(ROUTE_SITE + '/assignContacts', isAuthorized, [assignContactsValidation, assignContacts]);
+
+/**
+ * @api {post} /sites/site/unassignContact Unassign contact
+ * 
+ * @apiName unassignContact
+ * @apiDescription Unassign contact from a site.
+ * @apiGroup Sites/Site
+ * @apiVersion 0.0.0
+ *
+ * @apiHeader (Header) {String} token Auth token
+ *
+ * @apiParam (POST PARAM - JSON) {siteId: string, contactId: string} values Site values
+ *
+ */
+router.post(ROUTE_SITE + '/unassignContact', isAuthorized, [unassignContactValidation, unassignContact]);
+
+/**
+ * @api {post} /sites/site/assignMessageTypes Assign message types
+ * 
+ * @apiName assignMessageTypes
+ * @apiDescription Assign message types to a contact belonging to a site.
+ * @apiGroup Sites/Site
+ * @apiVersion 0.0.0
+ *
+ * @apiHeader (Header) {String} token Auth token
+ *
+ * @apiParam (POST PARAM - JSON) {siteId: string, contactId: string, messageTypes: [string]} values Site values
+ *
+ */
+router.post(ROUTE_SITE + '/assignMessageTypes', isAuthorized, [assignMessageTypesValidation, assignMessageTypes]);
+
+/**
+ * @api {post} /sites/site/unassignMessageType Unassign message type
+ * 
+ * @apiName unassignMessageType
+ * @apiDescription Remove message type for a contact belonging to a site.
+ * @apiGroup Sites/Site
+ * @apiVersion 0.0.0
+ *
+ * @apiHeader (Header) {String} token Auth token
+ *
+ * @apiParam (POST PARAM - JSON) {siteId: string, contactId: string, messageType: string} values Site values
+ *
+ */
+router.post(ROUTE_SITE + '/unassignMessageType', isAuthorized, [unassignMessageTypeValidation, unassignMessageType]);
 
 /**
  * @api {put} /sites/site/:id Edit site

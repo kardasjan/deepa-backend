@@ -9,6 +9,8 @@ import cors from 'cors';
 import index from './routes/index';
 import sites from './routes/sites';
 import example from './routes/example';
+import contacts from './routes/contacts';
+import messageTypes from './routes/messageTypes';
 import user from './routes/user';
 import auth from './services/AuthService/routes';
 
@@ -30,6 +32,8 @@ app.use(express.static(path.join(__dirname, '../public')));
 app.use('/', index);
 app.use('/sites', sites);
 app.use('/example', example);
+app.use('/contacts', contacts);
+app.use('/messageTypes', messageTypes);
 app.use('/user', user);
 app.use('/auth', auth);
 
